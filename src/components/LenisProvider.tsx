@@ -7,7 +7,7 @@ const LenisProvider = ({children} : {children : React.ReactNode}) => {
 
     })
   return (
-    <ReactLenis root options={{lerp : 0.08}}>{children}</ReactLenis>
+    <ReactLenis root options={{lerp : 0.04}}>{children}</ReactLenis>
   )
 }
 

@@ -2,23 +2,29 @@
 import Link from "next/link"
 import React from "react"
 import gsap from "gsap"
+import {usePathname} from "next/navigation"
 
-const MenuItems = [
-  {
-    name: "ABOUT",
-    link: "/",
-  },
-  {
-    name: "WORKS",
-    link: "/",
-  },
-  {
-    name: "CONTACT",
-    link: "/",
-  },
-]
+
 
 const Navbar = () => {
+  const pathname = usePathname()
+  const MenuItems = [
+    {
+      name: "ABOUT",
+      link: "/",
+      isActive : pathname === "/about"
+    },
+    {
+      name: "WORKS",
+      link: "/",
+      isActive : pathname === "/works"
+    },
+    {
+      name: "CONTACT",
+      link: "/",
+      isActive : pathname === "/contact"
+    },
+  ]
   const handleOpenMenu = () => {
     const tl = gsap.timeline({
       defaults: {
@@ -96,7 +102,7 @@ const Navbar = () => {
         <div className="menu-links flex flex-col gap-2">
           {MenuItems.map((item) => (
             <Link key={item.name} href={item.link} className="overflow-hidden">
-              <h1 className="menu-item text-bgshade medium-text hover:text-background transition-all duration-200 ease-in translate-y-[100%]">
+              <h1 className={`menu-item ${item.isActive ? "text-background" : "text-bgshade"} medium-text hover:text-background transition-all duration-200 ease-in translate-y-[100%]`}>
                 {item.name}
               </h1>
             </Link>

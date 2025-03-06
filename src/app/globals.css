@@ -25,10 +25,19 @@ body {
   .cont {
     @apply px-4 md:px-6 lg:px-10 
   }
+  .sec {
+    @apply flex h-screen min-h-[700px] flex-col gap-8 lg:gap-6
+  }
   .medium-text {
-    @apply text-2xl md:text-[40px] lg:text-5xl leading-[100%]
+    @apply text-[24px] md:text-[40px] lg:text-5xl leading-[100%]
   }
   .small-text {
     @apply text-xs md:text-base leading-[120%] 
+  }
+  .large-text {
+    @apply text-[64px] leading-14 md:text-8xl md:leading-20 lg:text-9xl lg:leading-28 tracking-tight
+  }
+  .ex-medium-text {
+    @apply text-[40px] md:text-5xl lg:text-[64px] leading-[100%]
   }
 }
