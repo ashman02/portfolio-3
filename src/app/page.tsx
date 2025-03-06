@@ -74,19 +74,18 @@ export default function Home() {
         },
       })
       .to(".about-word", {
-        color: "var(--color-foreground)",
+        translateY : 0,
         stagger: {
-          amount: 0.5,
-          each: 0.5,
-          from: "random",
+          amount : 1,
+          each : 0.2,
+          from: "start",
           ease: "power3.inOut",
         },
         scrollTrigger: {
-          trigger: ".main-container",
-          pin: true,
-          scrub: 1,
-          start: "top -0.1%",
-          end: "+=500",
+          trigger: aboutContRef.current,
+          scrub: 0.1,
+          start: "top 50%",
+          end: "+=300",
         },
       })
 
@@ -174,17 +173,19 @@ export default function Home() {
           </div>
           <div
             id="about-text"
-            className="text-center text-bgshade w-full md:w-11/12 lg:w-3/4 flex flex-wrap gap-x-4 items-center justify-center"
+            className="w-full md:w-11/12 lg:w-3/4 flex flex-wrap gap-x-4 items-center justify-center"
           >
             {aboutWords.map((word, index) => (
-              <span className="ex-medium-text about-word" key={index}>
+              <div key={index} className="overflow-hidden">
+              <span className="ex-medium-text about-word inline-block translate-y-[200%]">
                 {word}
               </span>
+              </div>
             ))}
           </div>
         </div>
       </section>
-      <section className="works">
+      <section className="works lg:pb-32">
         <div className="sec items-center justify-center overflow-hidden">
           <div className="flex items-center justify-center flex-col">
             <h1 className="medium-text">SELECTED</h1>

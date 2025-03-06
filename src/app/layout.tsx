@@ -3,6 +3,7 @@ import localfont from "next/font/local"
 import "./globals.css"
 import LenisProvider from "@/components/LenisProvider"
 import Navbar from "@/components/Navbar"
+import Footer from "@/components/Footer"
 
 const myFont = localfont({ src: "../../public/fonts/benzo.ttf" })
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         <LenisProvider>
           <Navbar/>
           {children}
+          <Footer/>
         </LenisProvider>
       </body>
     </html>
