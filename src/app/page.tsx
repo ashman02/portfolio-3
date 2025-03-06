@@ -6,8 +6,34 @@ import develop from "../../public/images/develop.png"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import { useRef } from "react"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import WorkCard from "@/components/WorkCard"
+
+const aboutWords = [
+  "I’m",
+  "a",
+  "full-stack",
+  "developer",
+  "and",
+  "designer",
+  "turning",
+  "your",
+  "vision",
+  "into",
+  "websites",
+  "that",
+  "captivate",
+  "visitors",
+  "and",
+  "convert",
+  "them—without",
+  "the",
+  "headaches.",
+]
 
 export default function Home() {
+  gsap.registerPlugin(ScrollTrigger)
+  const aboutContRef = useRef<HTMLDivElement>(null)
   const nameRef = useRef<HTMLHeadingElement>(null)
   useGSAP(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.inOut" } })
@@ -33,10 +59,68 @@ export default function Home() {
       },
       "<"
     )
+
+    const tlScroll = gsap.timeline()
+    tlScroll
+      .to(aboutContRef.current, {
+        translateY: 0,
+        ease: "power3.inOut",
+        scrollTrigger: {
+          trigger: ".main-container",
+          scrub: 1,
+          pin: true,
+          start: "top top",
+          end: "+=800",
+        },
+      })
+      .to(".about-word", {
+        color: "var(--color-foreground)",
+        stagger: {
+          amount: 0.5,
+          each: 0.5,
+          from: "random",
+          ease: "power3.inOut",
+        },
+        scrollTrigger: {
+          trigger: ".main-container",
+          pin: true,
+          scrub: 1,
+          start: "top -0.1%",
+          end: "+=500",
+        },
+      })
+
+    const workTl = gsap.timeline({
+      defaults: { ease: "power3.inOut" },
+      scrollTrigger: {
+        trigger: ".main-container",
+        scrub: 1,
+        pin: true,
+        start: "top -100%",
+        end: "+=100%",
+      },
+    })
+
+    workTl
+      .to(".project-1", {
+        opacity: 1,
+        scale: 1,
+        translateY: 0,
+      })
+      .to(".project-2", {
+        opacity: 1,
+        scale: 1,
+        translateY: 0,
+      })
+      .to(".project-3", {
+        opacity: 1,
+        scale: 1,
+        translateY: 0,
+      })
   }, [])
   return (
-    <main className="relative cont">
-      <section className="hero w-full sec items-center justify-center">
+    <main className="main-container relative cont overflow-x-hidden">
+      <section className="absolute -z-20 hero w-[calc(100%-32px)] md:w-[calc(100%-48px)] lg:w-[calc(100%-80px)] sec items-center justify-center">
         <h1 ref={nameRef} className="medium-text opacity-0">
           Hi! I’m Ashman, I
         </h1>
@@ -79,12 +163,50 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="aboutme sec items-center justify-center">
-        <div className="flex items-center justify-center flex-col">
-          <h1 className="medium-text">ABOUT</h1>
-          <h1 className="medium-text">ME</h1>
+      <section className="about-section overflow-hidden">
+        <div
+          ref={aboutContRef}
+          className="sec items-center justify-center bg-background translate-y-[100%]"
+        >
+          <div className="flex items-center justify-center flex-col">
+            <h1 className="medium-text">ABOUT</h1>
+            <h1 className="medium-text">ME</h1>
+          </div>
+          <div
+            id="about-text"
+            className="text-center text-bgshade w-full md:w-11/12 lg:w-3/4 flex flex-wrap gap-x-4 items-center justify-center"
+          >
+            {aboutWords.map((word, index) => (
+              <span className="ex-medium-text about-word" key={index}>
+                {word}
+              </span>
+            ))}
+          </div>
         </div>
-        <div className="ex-medium-text text-center text-bgshade w-full md:w-11/12 lg:w-3/4">I’m a full-stack developer and designer turning your vision into websites that captivate visitors and convert them—without the headaches.</div>
+      </section>
+      <section className="works">
+        <div className="sec items-center justify-center overflow-hidden">
+          <div className="flex items-center justify-center flex-col">
+            <h1 className="medium-text">SELECTED</h1>
+            <h1 className="medium-text">WORKS</h1>
+          </div>
+          <div className="work-container relative">
+            <div className="project-1 scale-[300%] opacity-0 translate-y-[200%]">
+              <WorkCard />
+            </div>
+            <div className="project-2 rotate-3 absolute top-0 scale-[300%]  opacity-0 w-full h-full translate-y-[200%]">
+              <WorkCard />
+            </div>
+            <div className="project-3 -rotate-3 absolute top-0 scale-[300%] opacity-0 w-full h-full translate-y-[200%]">
+              <WorkCard />
+            </div>
+          </div>
+          <div className="btn">
+            <button className="small-text px-4 pt-2 pb-1 border-[1px] border-foreground hover:bg-foreground hover:text-background transition-all duration-300 ease-in-out cursor-pointer">
+              EXPLORE MORE WORKS
+            </button>
+          </div>
+        </div>
       </section>
     </main>
   )
