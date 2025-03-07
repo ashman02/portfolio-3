@@ -15,17 +15,17 @@ const Footer = () => {
     },
     {
       name: "ABOUT",
-      link: "/",
+      link: "/about",
       isActive: pathname === "/about",
     },
     {
       name: "WORKS",
-      link: "/",
+      link: "/works",
       isActive: pathname === "/works",
     },
     {
       name: "CONTACT",
-      link: "/",
+      link: "/contact",
       isActive: pathname === "/contact",
     },
   ]
