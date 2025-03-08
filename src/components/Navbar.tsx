@@ -102,7 +102,7 @@ const Navbar = () => {
         <div className="menu-links flex flex-col gap-2">
           {MenuItems.map((item) => (
             <Link key={item.name} href={item.link} className="overflow-hidden">
-              <h1 className={`menu-item ${item.isActive ? "text-background" : "text-bgshade"} medium-text hover:text-background transition-all duration-200 ease-in translate-y-[100%]`}>
+              <h1 onClick={handleCloseMenu} className={`menu-item ${item.isActive ? "text-background" : "text-bgshade"} medium-text hover:text-background transition-all duration-200 ease-in translate-y-[100%]`}>
                 {item.name}
               </h1>
             </Link>
