@@ -53,7 +53,7 @@ const Footer = () => {
         <div ref={underlineRef} className="w-full h-3 bg-background scale-x-0 origin-left"/>
       </div>
       <div className="flex items-center justify-between">
-        <div className="menu space-y-4">
+        <div className="space-y-4">
           <h1 className="medium-text">MENU</h1>
           <div className="flex flex-col md:flex-row gap-1 md:gap-2">
             {MenuItems.map((item) => (
@@ -63,7 +63,7 @@ const Footer = () => {
                 className="overflow-hidden"
               >
                 <h1
-                  className={`menu-item ${
+                  className={`${
                     item.isActive ? "text-background" : "text-bgshade"
                   } small-text hover:text-background transition-all duration-200 ease-in`}
                 >
@@ -73,7 +73,7 @@ const Footer = () => {
             ))}
           </div>
         </div>
-        <div className="socials space-y-4">
+        <div className="space-y-4">
           <h1 className="medium-text">SOCIALS</h1>
           <div className="links flex flex-col md:flex-row gap-1 md:gap-2">
             <Link href="" target="_blank">
