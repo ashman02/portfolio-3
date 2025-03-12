@@ -7,7 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { scrollFadeIn } from '@/utils/gsapAnimation'
 
 const project = {
   id : 1,
@@ -21,7 +21,6 @@ const project = {
 }
 
 const WorkDescription = () => {
-  gsap.registerPlugin(ScrollTrigger)
   useGSAP(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.inOut" } })
     tl.to(".init-fade-header", {
@@ -37,19 +36,7 @@ const WorkDescription = () => {
     }, "")
 
     const fadeArray  = gsap.utils.toArray(".fade-in")
-    fadeArray.forEach((element : any) => gsap.to(element, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power3.inOut",
-      scrollTrigger: {
-        trigger: element,
-        start: "top 99%",
-        end: "+=300px",
-        scrub: true,
-        markers : true
-      }
-    }))
+    fadeArray.forEach((element : any) => scrollFadeIn(element))
   }, [])
   return (
     <main className='cont py-[128px]'>
@@ -60,7 +47,7 @@ const WorkDescription = () => {
         <div className='w-full h-full rounded-md overflow-hidden'>
           <Image src={project.homeImage} alt='home-image' className='init-fade-image w-full hover:scale-105 h-full transition-transform duration-300 ease-in-out opacity-0'/>
         </div>
-        <div className='fade-in flex gap-6 md:gap-4 lg:gap-6 w-full flex-col md:flex-row opacity-0 translate-y-24'>
+        <div className='fade-in flex gap-6 md:gap-4 lg:gap-6 w-full flex-col md:flex-row '>
           <div className='w-full md:w-1/2'>
             <h1 className='medium-text'>DESCRIPTION</h1>
           </div>
@@ -68,7 +55,7 @@ const WorkDescription = () => {
             <p className='text-base md:text-[20px] lg:text-2xl leading-[100%] text-bgshade'>{project.description}</p>
           </div>
         </div>
-        <div className='fade-in flex gap-6 md:gap-4 lg:gap-6 w-full flex-col md:flex-row opacity-0 translate-y-24'>
+        <div className='fade-in flex gap-6 md:gap-4 lg:gap-6 w-full flex-col md:flex-row '>
           <div className='w-full md:w-1/2'>
             <h1 className='medium-text'>SKILLS</h1>
           </div>
@@ -80,7 +67,7 @@ const WorkDescription = () => {
             ))}
           </div>
         </div>
-        <div className='fade-in flex gap-6 md:gap-4 lg:gap-6 w-full flex-col md:flex-row opacity-0 translate-y-24'>
+        <div className='fade-in flex gap-6 md:gap-4 lg:gap-6 w-full flex-col md:flex-row '>
           <div className='w-full md:w-1/2'>
             <h1 className='medium-text'>LIVE</h1>
           </div>
@@ -88,7 +75,7 @@ const WorkDescription = () => {
             <Link className='text-bgshade text-base md:text-[20px] lg:text-2xl underline' href={project.url} target='_blank'>{project.url}</Link>
           </div>
         </div>
-        <div className='fade-in flex gap-6 md:gap-4 lg:gap-6 w-full flex-col md:flex-row opacity-0 translate-y-24'>
+        <div className='fade-in flex gap-6 md:gap-4 lg:gap-6 w-full flex-col md:flex-row '>
           <div className='w-full md:w-1/2 h-[498px] rounded-md overflow-hidden'>
             <Image src={project.tabImage} alt='tab-image' className='w-full hover:scale-105 h-full transition-transform duration-300 ease-in-out object-cover object-center'/>
           </div>

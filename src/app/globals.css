@@ -40,4 +40,10 @@ body {
   .ex-medium-text {
     @apply text-[40px] md:text-5xl lg:text-[64px] leading-[100%]
   }
+  .fade-in {
+    @apply opacity-0 translate-y-24
+  }
+  .init-fade-in {
+    @apply opacity-0 translate-y-[100%]
+  }
 }
