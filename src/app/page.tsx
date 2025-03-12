@@ -8,6 +8,9 @@ import { useGSAP } from "@gsap/react"
 import { useRef } from "react"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import WorkCard from "@/components/WorkCard"
+import placesurHome from "@/../public/images/placesur/Home.png"
+import appleHome from "@/../public/images/Apple/home.png"
+import tattooHome from "@/../public/images/Tattoo/home.png"
 
 const aboutWords = [
   "I’m",
@@ -74,10 +77,10 @@ export default function Home() {
         },
       })
       .to(".about-word", {
-        translateY : 0,
+        translateY: 0,
         stagger: {
-          amount : 1,
-          each : 0.2,
+          amount: 1,
+          each: 0.2,
           from: "start",
           ease: "power3.inOut",
         },
@@ -177,9 +180,9 @@ export default function Home() {
           >
             {aboutWords.map((word, index) => (
               <div key={index} className="overflow-hidden">
-              <span className="ex-medium-text about-word inline-block translate-y-[200%]">
-                {word}
-              </span>
+                <span className="ex-medium-text about-word inline-block translate-y-[200%]">
+                  {word}
+                </span>
               </div>
             ))}
           </div>
@@ -193,13 +196,28 @@ export default function Home() {
           </div>
           <div className="work-container relative">
             <div className="project-1 scale-[300%] opacity-0 translate-y-[200%]">
-              <WorkCard />
+              <WorkCard
+                name="PLACESUR"
+                img={placesurHome}
+                skills={["NextJs", "MongoDB", "Cloudinary", "NextAuth"]}
+                id={1}
+              />
             </div>
             <div className="project-2 rotate-3 absolute top-0 scale-[300%]  opacity-0 w-full h-full translate-y-[200%]">
-              <WorkCard />
+              <WorkCard
+                name="INK BY ASH"
+                img={tattooHome}
+                skills={["Figma", "NextJs", "Typescript", "Gsap"]}
+                id={2}
+              />
             </div>
             <div className="project-3 -rotate-3 absolute top-0 scale-[300%] opacity-0 w-full h-full translate-y-[200%]">
-              <WorkCard />
+              <WorkCard
+                name="IPHONE"
+                img={appleHome}
+                skills={["ReactJs", "Gsap", "ThreeJs", "React3Fiber"]}
+                id={4}
+              />
             </div>
           </div>
           <div className="btn">

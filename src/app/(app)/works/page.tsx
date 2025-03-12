@@ -3,6 +3,7 @@ import WorkCard from "@/components/WorkCard"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import React, { useRef, useState } from "react"
+import { allWorks } from "@/utils/data"
 
 const Work = () => {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -45,14 +46,14 @@ const Work = () => {
             ref={sliderRef}
             className="slider h-[448px] md:h-[570px] lg:h-[546px] w-full relative left-[calc(50%-140px)] md:left-[calc(50%-234px)] lg:left-[calc(50%-224px)] flex gap-16 items-center"
           >
-            {[1, 2, 3, 4, 5].map((_, i) => (
+            {allWorks.map((w, i) => (
               <div
                 key={i}
                 className={`${
                   i === activeIndex ? "blur-none rotate-0" : "blur-sm rotate-3"
                 } transition-all duration-300 ease-in-out`}
               >
-                <WorkCard />
+                <WorkCard name={w.name} img={w.homeImage} skills={w.skills} id={w.id} />
               </div>
             ))}
           </div>
