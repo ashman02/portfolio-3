@@ -17,6 +17,7 @@ const Contact = () => {
   const handleOnSubmit = async () => {
     if(!name || !email || !message) {
       setMsg("All fields are required")
+      return
     }
     setIsSending(true)
     const response = await fetch("/api/send-message", {
@@ -68,6 +69,7 @@ const Contact = () => {
                   id="name"
                   className="px-4 py-4 medium-text placeholder:text-bgshade border-2 border-bgshade focus:border-foreground outline-none w-full"
                   placeholder="Your name..."
+                  value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
@@ -83,6 +85,7 @@ const Contact = () => {
                   id="email"
                   className="px-4 py-4 medium-text placeholder:text-bgshade border-2 border-bgshade focus:border-foreground outline-none w-full"
                   placeholder="Your email..."
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
@@ -98,6 +101,7 @@ const Contact = () => {
               rows={7}
               className="px-4 py-4 medium-text placeholder:text-bgshade border-2 border-bgshade focus:border-foreground outline-none resize-none"
               placeholder="Write it down..."
+              value={message}
               onChange={(e) => setMessage(e.target.value)}
             />
           </div>

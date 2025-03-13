@@ -1,6 +1,5 @@
 import nodemailer from "nodemailer"
 
-
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -9,12 +8,11 @@ const transporter = nodemailer.createTransport({
   },
 })
 
-
 export async function sendVerificationEmail(
-  email : string,
-  fullName : string,
-  message : string
-)  {
+  email: string,
+  fullName: string,
+  message: string
+) {
   try {
     const mailOptions = {
       from: email,
@@ -73,17 +71,17 @@ export async function sendVerificationEmail(
   </body>
 </html>`,
     }
-    const info = await transporter.sendMail(mailOptions)
-    console.log(info)
+    await transporter.sendMail(mailOptions)
     return {
-        success : true,
-        message : "I got your message thank you."
+      success: true,
+      message: "I got your message thank you.",
     }
   } catch (error) {
     console.log("Error sending verification email", error)
     return {
-        success : false,
-        message : "I did not get your message due to technical issue please try again."
+      success: false,
+      message:
+        "I did not get your message due to technical issue please try again.",
     }
   }
 }
