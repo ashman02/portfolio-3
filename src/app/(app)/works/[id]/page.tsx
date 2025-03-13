@@ -32,6 +32,7 @@ const WorkDescription = () => {
     )
 
     const fadeArray = gsap.utils.toArray(".fade-in")
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     fadeArray.forEach((element: any) => scrollFadeIn(element))
   }, [])
   const handleNextClick = () => {
