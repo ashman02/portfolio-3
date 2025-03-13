@@ -11,6 +11,7 @@ import WorkCard from "@/components/WorkCard"
 import placesurHome from "@/../public/images/placesur/Home.png"
 import appleHome from "@/../public/images/Apple/home.png"
 import tattooHome from "@/../public/images/Tattoo/home.png"
+import Link from "next/link"
 
 const aboutWords = [
   "I’m",
@@ -221,9 +222,11 @@ export default function Home() {
             </div>
           </div>
           <div className="btn">
+            <Link href={"/works"}>
             <button className="small-text px-4 pt-2 pb-1 border-[1px] border-foreground hover:bg-foreground hover:text-background transition-all duration-300 ease-in-out cursor-pointer">
               EXPLORE MORE WORKS
             </button>
+            </Link>
           </div>
         </div>
       </section>

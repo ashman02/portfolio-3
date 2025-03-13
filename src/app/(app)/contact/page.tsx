@@ -1,13 +1,41 @@
 "use client"
 import { useGSAP } from "@gsap/react"
-import React from "react"
+import React, { useState } from "react"
 import { initFadeIn, scrollFadeIn } from "@/utils/gsapAnimation"
 const Contact = () => {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
+  const [isSending, setIsSending] = useState(false)
+  const [msg, setMsg] = useState("")
   useGSAP(() => {
     initFadeIn(".contact-header")
     scrollFadeIn(".why-contact")
     scrollFadeIn(".contact-form")
   }, [])
+
+  const handleOnSubmit = async () => {
+    if(!name || !email || !message) {
+      setMsg("All fields are required")
+    }
+    setIsSending(true)
+    const response = await fetch("/api/send-message", {
+      method : "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({name, email, message})
+    })
+    const res = await response.json()
+    if(res.success){
+      setMsg(res.message)
+      setName("")
+      setEmail("")
+      setMessage("")
+    }else{
+      setMsg(res.message)
+    }
+    setIsSending(false)
+  }
+
   return (
     <main className="cont">
       <section className="sec items-center justify-center">
@@ -40,6 +68,7 @@ const Contact = () => {
                   id="name"
                   className="px-4 py-4 medium-text placeholder:text-bgshade border-2 border-bgshade focus:border-foreground outline-none w-full"
                   placeholder="Your name..."
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
             </div>
@@ -54,6 +83,7 @@ const Contact = () => {
                   id="email"
                   className="px-4 py-4 medium-text placeholder:text-bgshade border-2 border-bgshade focus:border-foreground outline-none w-full"
                   placeholder="Your email..."
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -68,13 +98,15 @@ const Contact = () => {
               rows={7}
               className="px-4 py-4 medium-text placeholder:text-bgshade border-2 border-bgshade focus:border-foreground outline-none resize-none"
               placeholder="Write it down..."
+              onChange={(e) => setMessage(e.target.value)}
             />
           </div>
           <div className="button">
-            <button className="medium-text bg-bgshade text-foreground px-8 lg:px-10 py-3 md:py-4 hover:bg-foreground hover:text-background transition-all duration-300 ease-in-out cursor-pointer">
-              SEND
+            <button onClick={handleOnSubmit} disabled={isSending} className={`medium-text bg-bgshade text-foreground px-8 lg:px-10 py-3 md:py-4 hover:bg-foreground hover:text-background transition-all duration-300 ease-in-out cursor-pointer disabled:opacity-60`}>
+              {isSending ? "SENDING..." : "SEND"}
             </button>
           </div>
+          {msg && <p className="medium-text text-bgshade">{msg}</p>}
         </div>
       </section>
     </main>

@@ -4,12 +4,14 @@ import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import React, { useRef, useState } from "react"
 import { allWorks } from "@/utils/data"
+import { initFadeIn } from "@/utils/gsapAnimation"
 
 const Work = () => {
   const [activeIndex, setActiveIndex] = useState(0)
   const sliderRef = useRef(null)
 
   useGSAP(() => {
+    initFadeIn(".init-fade-in")
     const mm = gsap.matchMedia()
     mm.add(
       {
@@ -25,7 +27,7 @@ const Work = () => {
 
         gsap.to(sliderRef.current, {
           translateX: `-${
-            (activeIndex) * (isDesktop ? 504 : isTablet ? 528 : 344)
+            activeIndex * (isDesktop ? 504 : isTablet ? 528 : 344)
           }px`,
           duration: 0.5,
           ease: "power3.inOut",
@@ -36,12 +38,12 @@ const Work = () => {
 
   return (
     <main className="">
-      <section className="flex flex-col gap-8 lg:gap-6 items-center justify-center py-[128px]">
-        <div className="flex flex-col items-center justify-center cont mb-8">
+      <section className="flex flex-col gap-8 lg:gap-6 items-center justify-center py-[128px] overflow-y-hidden">
+        <div className="flex flex-col items-center justify-center cont mb-8 init-fade-in">
           <h1 className="medium-text">SOME OF</h1>
           <h1 className="medium-text">WORKS</h1>
         </div>
-        <div className="slider-wrapper w-full h-full overflow-hidden relative">
+        <div className="slider-wrapper w-full h-full overflow-hidden relative init-fade-in">
           <div
             ref={sliderRef}
             className="slider h-[448px] md:h-[570px] lg:h-[546px] w-full relative left-[calc(50%-140px)] md:left-[calc(50%-234px)] lg:left-[calc(50%-224px)] flex gap-16 items-center"
@@ -53,7 +55,12 @@ const Work = () => {
                   i === activeIndex ? "blur-none rotate-0" : "blur-sm rotate-3"
                 } transition-all duration-300 ease-in-out`}
               >
-                <WorkCard name={w.name} img={w.homeImage} skills={w.skills} id={w.id} />
+                <WorkCard
+                  name={w.name}
+                  img={w.homeImage}
+                  skills={w.skills}
+                  id={w.id}
+                />
               </div>
             ))}
           </div>

@@ -35,9 +35,9 @@ const WorkDescription = () => {
     fadeArray.forEach((element: any) => scrollFadeIn(element))
   }, [])
   const handleNextClick = () => {
-    if(id === allWorks.length){
+    if (id === allWorks.length) {
       router.push("/works/1")
-    }else {
+    } else {
       router.push(`/works/${id + 1}`)
     }
   }
@@ -113,20 +113,30 @@ const WorkDescription = () => {
         </div>
         <div className="w-full h-full flex gap-8 items-center justify-center flex-col">
           <div className="w-fit">
-            <h1 onClick={handleNextClick} className="large-text hover:opacity-70 cursor-pointer transition-opacity duration-300 ease-in-out">
+            <h1
+              onClick={handleNextClick}
+              className="large-text hover:opacity-70 cursor-pointer transition-opacity duration-300 ease-in-out"
+            >
               NEXT
             </h1>
           </div>
           <div className="flex">
-            {allWorks.map((w) => (
-              w.id !== id && <div
-              key={w.id}
-              className="w-12 h-12 bg-bgshade hover:scale-150 transition-transform duration-300 ease-in-out origin-bottom cursor-pointer"
-              onClick={() => router.push(`/works/${w.id}`)}
-            >
-              <Image src={w.homeImage} alt="project-image" className="object-cover object-center w-full h-full"/>
-            </div>
-            ))}
+            {allWorks.map(
+              (w) =>
+                w.id !== id && (
+                  <div
+                    key={w.id}
+                    className="w-12 h-12 bg-bgshade hover:scale-150 transition-transform duration-300 ease-in-out origin-bottom cursor-pointer"
+                    onClick={() => router.push(`/works/${w.id}`)}
+                  >
+                    <Image
+                      src={w.homeImage}
+                      alt="project-image"
+                      className="object-cover object-center w-full h-full"
+                    />
+                  </div>
+                )
+            )}
           </div>
         </div>
       </section>

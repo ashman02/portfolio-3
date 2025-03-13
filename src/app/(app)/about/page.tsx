@@ -5,12 +5,15 @@ import home from "@/../public/images/placesur/Home.png"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { initFadeIn, scrollFadeIn } from "@/utils/gsapAnimation"
 
 const About = () => {
   gsap.registerPlugin(ScrollTrigger)
   const cardRef = useRef<HTMLDivElement>(null)
   const secRef = useRef<HTMLElement>(null)
   useGSAP(() => {
+    initFadeIn(".init-fade-in")
+    scrollFadeIn(".fade-in")
     const mm = gsap.matchMedia()
     mm.add(
       {
@@ -69,7 +72,7 @@ const About = () => {
     )
 
     gsap.to(cardRef.current, {
-      yPercent: -200,
+      yPercent: -230,
       scrollTrigger: {
         trigger: ".usp",
         scrub: true,
@@ -82,13 +85,13 @@ const About = () => {
     <main className="cont main-cont">
       <section ref={secRef} className="relative">
         <div className="flex h-screen lg:h-full min-h-[700px] flex-col gap-[200px] lg:gap-36 px-0 md:px-6 lg:px-8 justify-center py-32">
-          <div className="flex flex-col items-center justify-center -gap-1">
+          <div className="flex flex-col items-center justify-center -gap-1 init-fade-in">
             <h1 className="medium-text">ABOUT</h1>
             <h1 className="medium-text">ME</h1>
           </div>
           <div>
-            <h1 className="large-text">ASHMAN</h1>
-            <h1 className="large-text">SIDHU</h1>
+            <h1 className="large-text init-fade-in">ASHMAN</h1>
+            <h1 className="large-text init-fade-in">SIDHU</h1>
           </div>
           <div className="flex flex-col items-center justify-center">
             <p className="small-text">SCROLL</p>
@@ -97,12 +100,12 @@ const About = () => {
         </div>
         <div
           ref={cardRef}
-          className="w-[208px] md:w-[282px] lg:w-[320px] h-[240px] md:h-[312px] lg:h-[344px] bg-bgshade2 px-2 py-3 md:px-4 md:py-4 lg:py-6 flex flex-col gap-2 md:gap-4 lg:gap-6 items-center justify-center cursor-pointer mb-5 fixed top-[30%] right-4 md:right-12 lg:right-[72px] -z-10 opacity-70 transform-3d transform-gpu will-change-transform"
+          className="w-[208px] md:w-[282px] lg:w-[320px] h-[240px] md:h-[312px] lg:h-[344px] bg-bgshade2 px-2 py-3 md:px-4 md:py-4 lg:py-6 flex flex-col gap-2 md:gap-4 lg:gap-6 items-center justify-center cursor-pointer mb-5 fixed top-[30%] right-4 md:right-12 lg:right-[72px] -z-10 transform-3d transform-gpu will-change-transform init-fade-in"
         >
           <Image
             src={home}
             alt="home-image"
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center opacity-70"
           />
           <h1 className="small-text">ASHMAN SIDHU</h1>
         </div>
@@ -123,8 +126,8 @@ const About = () => {
         </div>
       </section>
       <section className="usp px-0 md:px-6 lg:px-8 flex items-center justify-center flex-col gap-16 py-[128px]">
-        <h1 className="medium-text">WHAT YOU WILL GET...</h1>
-        <div className="flex flex-col gap-10 lg:gap-[256px] w-full">
+        <h1 className="medium-text fade-in">WHAT YOU WILL GET...</h1>
+        <div className="flex flex-col gap-10 lg:gap-[256px] w-full fade-in">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-10">
             <h1 className="medium-text underline text-bgshade w-full lg:w-[350px]">
               End-TO-End Development

@@ -106,3 +106,22 @@ export const allWorks = [
   },
 ]
 
+export const socialLinks = [
+  {
+    name : "INSTAGRAM",
+    link : "https://www.instagram.com/cforchobar/"
+  },
+  {
+    name : "FACEBOOK",
+    link : "https://www.facebook.com/profile.php?id=61567812032228"
+  },
+  {
+    name : "LINKEDIN",
+    link : "https://www.linkedin.com/in/ashman02"
+  },
+  {
+    name : "GITHUB",
+    link : "https://github.com/ashman02"
+  }
+]
+
