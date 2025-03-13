@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image"
 import React, { useRef } from "react"
-import home from "@/../public/images/placesur/Home.png"
+import mypic from "@/../public/images/mypic.jpg"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -100,12 +100,12 @@ const About = () => {
         </div>
         <div
           ref={cardRef}
-          className="w-[208px] md:w-[282px] lg:w-[320px] h-[240px] md:h-[312px] lg:h-[344px] bg-bgshade2 px-2 py-3 md:px-4 md:py-4 lg:py-6 flex flex-col gap-2 md:gap-4 lg:gap-6 items-center justify-center cursor-pointer mb-5 fixed top-[30%] right-4 md:right-12 lg:right-[72px] -z-10 transform-3d transform-gpu will-change-transform init-fade-in"
+          className=" bg-bgshade2 px-2 py-3 md:px-4 md:py-4 lg:py-6 flex flex-col gap-2 md:gap-4 lg:gap-6 items-center justify-center cursor-pointer mb-5 fixed top-[30%] right-4 md:right-12 lg:right-[72px] -z-10 transform-3d transform-gpu will-change-transform init-fade-in"
         >
           <Image
-            src={home}
+            src={mypic}
             alt="home-image"
-            className="w-full h-full object-cover object-center opacity-70"
+            className="w-[208px] md:w-[282px] lg:w-[320px] h-[216px] md:h-[288px] lg:h-[320px] object-cover object-center opacity-70"
           />
           <h1 className="small-text">ASHMAN SIDHU</h1>
         </div>
